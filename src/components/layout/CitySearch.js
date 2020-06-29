@@ -1,34 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { CityContext } from '../contexts/CityContext'
+import { WeatherContext } from '../contexts/WeatherContext'
+import { FiveDayForecastContext } from '../contexts/FiveDayForecastContext'
+import { TwelveHourForecastContext } from '../contexts/TwelveHourForecasstContext'
 
 const CitySearch = () => {
 
   const [city, setCity] = useState('')
-  const [cityDet, SetCityDet] = useState({
-    cityName: '',
-    countryShort: '',
-    country: '',
-    latitude: '',
-    longitude: '',
-    elevation: '',
-    region: '',
-    area: '',
-    timezone: ''
-  })
-  const [weather, SetWeather] = useState({
-    precipitation: '',
-    dayTime: '',
-    precipitationType: '',
-    temperature: '',
-    weatherIcon: '',
-    weatherText: ''
-  })
-  const [fiveDayForecast, SetFiveDayForecast] = useState([])
-  const [twelveHourForecast, SetTwelveHourForecast] = useState ([])
+  const {SetCityDet} = useContext(CityContext)
+  const {SetWeather} = useContext(WeatherContext)
+  const {SetFiveDayForecast} = useContext(FiveDayForecastContext)
+  const {SetTwelveHourForecast} = useContext(TwelveHourForecastContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const key = 'Tm6UdZQDmYGkqaGnzvwGKupkPASVkrPR';
+    const key = 'kXEQIlo2o3XscDHxsqyHAYSvn5mthJRb';
     const query = `?apikey=${key}&q=${city}`;
     axios
       .get('http://dataservice.accuweather.com/locations/v1/cities/search' + query)
@@ -42,7 +29,6 @@ const CitySearch = () => {
             longitude: res.data[0].GeoPosition.Longitude,
             elevation: res.data[0].GeoPosition.Elevation.Metric.UnitType,
             region: res.data[0].Region.EnglishName,
-            area: res.data[0].SupplementalAdminAreas[0].EnglishName,
             timezone: res.data[0].TimeZone.Code
           })
         axios
@@ -53,39 +39,24 @@ const CitySearch = () => {
               dayTime: res.data[0].IsDayTime,
               precipitationType: res.data[0].PrecipitationType,
               temperature: res.data[0].Temperature.Metric.Value,
+              unit: res.data[0].Temperature.Metric.Unit,
               weatherIcon: res.data[0].WeatherIcon,
               weatherText: res.data[0].WeatherText
             })
-          })
-        axios
-          .get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + res.data[0].Key + `?apikey=${key}`)
-          .then(res => {
-            SetFiveDayForecast(res.data.DailyForecasts)
           })
         axios
           .get('http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/' + res.data[0].Key + `?apikey=${key}`)
           .then(res => {
             SetTwelveHourForecast(res.data)
           })
+        axios
+          .get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + res.data[0].Key + `?apikey=${key}`)
+          .then(res => {
+            SetFiveDayForecast(res.data.DailyForecasts)
+          })
       })
     e.target.reset();
   }
-
-  useEffect(() => {
-    console.log(cityDet)
-  }, [cityDet])
-
-  useEffect(() => {
-    console.log(weather)
-  }, [weather])
-
-  useEffect(() => {
-    console.log(fiveDayForecast)
-  }, [fiveDayForecast])
-
-  useEffect(() => {
-    console.log(twelveHourForecast)
-  }, [twelveHourForecast])
 
   return ( 
     <div className="container">

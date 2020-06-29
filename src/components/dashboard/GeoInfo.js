@@ -1,20 +1,18 @@
 import React, { useContext } from 'react';
 import { CityContext } from '../contexts/CityContext'
 
-const CityInfo = () => {
+const GeoInfo = () => {
 
   const {cityDet} = useContext(CityContext)
 
-  return (
+  return ( 
     Object.keys(cityDet).length > 0 ? (
       <div className="card blue-grey darken-1">
         <div className="card-content white-text">
-          <span className="card-title">City details:</span>
-          <p>Full name: {cityDet.cityName}</p>
-          <p>Counrty: {cityDet.country}</p>
-          <p>Country index: {cityDet.countryShort}</p>
-          <p>Region: {cityDet.region}</p>
-          <p>Timezome: {cityDet.timezone}</p>
+          <span className="card-title">Geo position:</span>
+          <p>Latitude: {cityDet.latitude}</p>
+          <p>Longitude: {cityDet.longitude}</p>
+          <p>Elevation: {cityDet.elevation}</p>
         </div>
       </div>    
     ) : (
@@ -24,8 +22,7 @@ const CityInfo = () => {
         </div>
       </div>   
     )
-
   );
 }
  
-export default CityInfo;
+export default GeoInfo;

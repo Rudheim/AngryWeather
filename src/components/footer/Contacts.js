@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Contacts = () => {
-  return ( 
-    <div className="col l6 s12">
-      <h5 className="white-text">Footer Content</h5>
-      <p className="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-    </div>
+
+  const {darkTheme} = useContext(ThemeContext);
+
+  const theme = darkTheme.isDarkTheme ? darkTheme.light : darkTheme.dark
+
+  return (
+    <div className="footer_info row center">
+      <div className="col s12 m6">
+        <ul> 
+            <li><a href="instagram" className="tooltipped btn-floating btn-small blue-grey lighten-1" data-tooltip="Instagram">
+              <i className="icons fab fa-instagram"></i>
+            </a></li>
+            <li><a href="facebook" className="tooltipped btn-floating btn-small blue-grey lighten-1" data-tooltip="Facebook">
+              <i className="icons fab fa-facebook"></i>
+            </a></li>
+            <li><a href="twitter" className="tooltipped btn-floating btn-small blue-grey lighten-1" data-tooltip="Twitter">
+              <i className="icons fab fa-twitter"></i>
+            </a></li>
+            </ul>
+      </div>
+      <div className={`col s12 m6 ${theme.nav_bg} accu_weather_logo`}>
+        <a href="https://developer.accuweather.com/"><img src="/img/AccuWeather_Logo.svg" alt="accu_weather_logo"/></a>
+      </div>
+    </div> 
    );
 }
  

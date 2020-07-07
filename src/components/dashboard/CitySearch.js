@@ -7,7 +7,8 @@ import { TwelveHourForecastContext } from '../contexts/TwelveHourForecasstContex
 
 const CitySearch = () => {
 
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState('');
+  const [err_msg, setErr] = useState('');
   const {SetCityDet} = useContext(CityContext)
   const {SetWeather} = useContext(WeatherContext)
   const {SetFiveDayForecast} = useContext(FiveDayForecastContext)
@@ -15,11 +16,12 @@ const CitySearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const key = 'kXEQIlo2o3XscDHxsqyHAYSvn5mthJRb';
+    const key = '1wupjhGIfkBBpQfqPYuNajoZHdCi12Nt';
     const query = `?apikey=${key}&q=${city}`;
     axios
       .get('http://dataservice.accuweather.com/locations/v1/cities/search' + query)
       .then(res => {
+        setErr('');
         SetCityDet(
           {
             cityName: res.data[0].AdministrativeArea.EnglishName,
@@ -54,19 +56,21 @@ const CitySearch = () => {
           .then(res => {
             SetFiveDayForecast(res.data.DailyForecasts)
           })
+      }).catch((err) => {
+        setErr('Cannot find given city name')
       })
     e.target.reset();
   }
 
   return ( 
-    <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="input-field">
+        <i className="material-icons prefix blue-text">search</i>
           <label htmlFor="city_search">Enter the city</label>
           <input className="validate" type="text" name="city_search" onChange={e => setCity(e.target.value.trim())}/>
+          <p className="center red-text text-darken-2">{err_msg}</p>
         </div>
       </form>
-    </div>
    );
 }
  

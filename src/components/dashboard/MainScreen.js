@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { CityContext } from '../contexts/CityContext'
-import { WeatherContext } from '../contexts/WeatherContext'
+import { CityContext } from '../contexts/CityContext';
+import { WeatherContext } from '../contexts/WeatherContext';
 
 const MainScreen = () => {
 
@@ -8,19 +8,18 @@ const MainScreen = () => {
   const {weather} = useContext(WeatherContext)
 
   const background = weather.dayTime ? (
-    'blue'
+    'light-blue'
   ) : (
-    'blue-grey'
+    'blue-grey darken-4'
   )
 
   return ( 
     Object.keys(cityDet).length > 0 && Object.keys(weather).length > 0 ? (
       <div className={`card ${background} darken-1`}>
-        <div className="card-content white-text">
+        <div className="card-content white-text center">
           <img src={`/img/icons/${weather.weatherIcon}.png`} alt="{weather.weatherText}"/>
-          <h2>{cityDet.cityName}</h2>
+          <h1>{cityDet.cityName}</h1>
           <h5>{cityDet.country}</h5>
-          <p>{weather.weatherText.toUpperCase()}</p>
           <h1>{weather.temperature} &deg;{weather.unit}</h1>
         </div>
       </div>      

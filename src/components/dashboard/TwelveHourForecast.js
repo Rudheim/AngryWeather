@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
-import { TwelveHourForecastContext } from '../contexts/TwelveHourForecasstContext'
+import { TwelveHourForecastContext } from '../contexts/TwelveHourForecasstContext';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const TwelveHourForecast = () => {
 
   const {TwelveHourForecast} = useContext(TwelveHourForecastContext)
+  const {darkTheme} = useContext(ThemeContext);
+
+  const theme = darkTheme.isDarkTheme ? darkTheme.light : darkTheme.dark
 
   const forecastList = TwelveHourForecast.length ? (
     TwelveHourForecast.map(hourly => {
@@ -28,8 +32,8 @@ const TwelveHourForecast = () => {
     </tr>
   )
   return ( 
-    <div className="card blue-grey darken-1">
-      <div className="card-content white-text row">
+    <div className={`card ${theme.card}`}>
+      <div className={`card-content ${theme.card_text}`}>
         <table className="highlight">
           <tbody>
               {forecastList}

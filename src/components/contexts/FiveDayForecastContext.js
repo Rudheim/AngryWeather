@@ -7,11 +7,9 @@ const FiveDayForecastProvider = (props) => {
   const [fiveDayForecast, SetFiveDayForecast] = useState([])
 
   return ( 
-    <div>
-      <FiveDayForecastContext.Provider value={{fiveDayForecast, SetFiveDayForecast}}>
-        {props.children}
-      </FiveDayForecastContext.Provider>
-    </div>
+    <FiveDayForecastContext.Provider value={{fiveDayForecast, SetFiveDayForecast}}>
+      {props.children}
+    </FiveDayForecastContext.Provider>
   );
 }
  

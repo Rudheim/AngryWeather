@@ -25,9 +25,18 @@ const FiveDaysForecast = () => {
   )
 
   return ( 
-    <div className="card blue-grey darken-1">
-      <div className="card-content white-text row">
+    <div className="card day_night">
+      <div className="card-content black-text row">
         <table className="highlight">
+          <thead>
+            <tr>
+                <th>Date</th>
+                <th></th>
+                <th>Day</th>
+                <th></th>
+                <th>Night</th>
+            </tr>
+          </thead>
           <tbody>
               {forecastDailyList}
           </tbody>

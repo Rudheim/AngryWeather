@@ -1,28 +1,33 @@
 import React from 'react';
-import CitySearch from './components/layout/CitySearch';
 import Dashboard from './components/layout/Dashboard';
-import Footer from './components/layout/Footter';
+import Footer from './components/layout/Footer';
 import CityProvider from './components/contexts/CityContext';
 import WeatherProvider from './components/contexts/WeatherContext';
 import FiveDayForecastProvider from './components/contexts/FiveDayForecastContext';
 import TwelveHourForecastProvider from './components/contexts/TwelveHourForecasstContext';
+import M from "materialize-css";
+import Navbar from './components/layout/Navbar';
+import ThemeProvider from './components/contexts/ThemeContext';
 
-function App() {
+const App = () => {
+
+  M.AutoInit();
+
   return (
-    <div className="App">
+    <ThemeProvider>
+      <Navbar />
       <CityProvider>
         <WeatherProvider>
           <FiveDayForecastProvider>
             <TwelveHourForecastProvider>
-              <CitySearch />
               <Dashboard />
               </TwelveHourForecastProvider>
             </FiveDayForecastProvider>
           </WeatherProvider>
       </CityProvider>
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 }
-
+ 
 export default App;

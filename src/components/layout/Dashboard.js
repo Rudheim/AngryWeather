@@ -22,18 +22,18 @@ const Dashboard = () => {
           <div className="col s12 m6">
             <CitySearch />
             <MainScreen />
+            <FiveDaysForecast />              
+          </div>
+          <div className="col s12 m6">
+            <TwelveHourForecast />
             <div className="row">
-              <div className="col s12 m12 l6">
-                <TwelveHourForecast />
-              </div>
-              <div className="col s12 m12 l6">
+              <div className="col s12 m6">
                 <CityInfo />
+              </div>
+              <div className="col s12 m6">
                 <GeoInfo />
               </div>
             </div>
-          </div>
-          <div className="col s12 m6">
-            <FiveDaysForecast />
           </div>
         </div>
       </div>

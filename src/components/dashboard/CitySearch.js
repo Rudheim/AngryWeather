@@ -16,7 +16,7 @@ const CitySearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const key = '1wupjhGIfkBBpQfqPYuNajoZHdCi12Nt';
+    const key = 'ftRUJysO43J8dJDzfA6GZUuaCeKulw8U';
     const query = `?apikey=${key}&q=${city}`;
     axios
       .get('http://dataservice.accuweather.com/locations/v1/cities/search' + query)

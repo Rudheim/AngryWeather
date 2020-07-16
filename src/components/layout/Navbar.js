@@ -15,18 +15,15 @@ const Navbar = () => {
   )
 
   return ( 
-    <div className="container">
-      <nav className={`nav-wrapper ${theme.nav_bg}`}>
-          <span className={`brand-logo center ${theme.nav_text}`}><i className="material-icons">cloud_circle</i>MeteoWeather</span>
+      <nav className={`nav-wrapper transparent`}>
           <div className="switch right">
             <label>
             <input type="checkbox" onChange={toggleTheme}/>
             <span className="lever"></span>
-            <i className="material-icons light-blue-text text-darken-4">brightness_3</i>
+            <i className="material-icons light-blue-text text-darken-2">brightness_3</i>
             </label>
           </div>
       </nav>
-    </div>
   )
 }
  

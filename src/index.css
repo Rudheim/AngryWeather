@@ -1,32 +1,21 @@
 /* NAVBAR */
 .nav-wrapper{
   height: 40px !important;
+  box-shadow: none !important;
 }
 
-nav > span{
-  font-size: 25px !important;
-  margin-top: -13px;
-}
-/* CLOUD ICON */
-nav > span > i{
-  font-size: 35px !important;
-  margin-top: 5px;
-}
-
+/* THEME-SWITCH */
 nav .switch{
   margin-right: 10px;
   margin-top: -15px;
 }
-
 .switch i{
   display: inline-block !important;
   margin-top: 8px;
 }
-
 .switch .lever{
   margin-top: -18px !important;
 }
-
 .switch label input[type=checkbox]:checked+.lever{
   background-color: rgba(212, 212, 212, 0.205) !important;
 }
@@ -34,20 +23,56 @@ nav .switch{
   background-color: rgb(141, 141, 141) !important;
 }
 
+/* LOGO */
+.search .cloud-logo{
+  width: 300px;
+  margin: auto auto 70px;
+}
+.cloud-logo svg{
+  fill: rgb(67, 186, 255);
+}
+
+/* SEARCH-FORM */
 form{
   z-index: 100;
 }
 form .input-field{
-  margin-left: auto;
-  margin-right: auto;
   max-width: 300px;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]){
+  border-bottom: rgb(0, 132, 255) !important;
+  box-shadow: 0 1px 0 0 rgb(0, 132, 255) !important;
+}
+/* LOADING-CIRCLE */
+.lds-dual-ring {
+  display: none;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid rgb(0, 195, 255);
+  border-color: rgb(0, 195, 255) transparent rgb(0, 195, 255) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* CARDS */
 .card h1{
   margin-top: 10px !important;
 }
-
 .card-title{
   font-weight: 400 !important;
 }
@@ -55,21 +80,24 @@ form .input-field{
 td, th{
   text-align: center !important;
 }
-
 td, th{
   padding: 0 !important;
 }
-
 tr span{
   margin-top: -15px;
 }
-
 .day_night{
   background: rgb(241,244,247);
   background: linear-gradient(94deg, rgba(241,244,247,1) 12%, rgba(97,128,143,1) 100%);
 }
 
 /* _________FOOTER________ */
+.page-footer{
+  bottom: 0;
+  left: 0;
+  right:0;
+}
+
 .row{
   margin-bottom: 0 !important;
 }
@@ -81,7 +109,7 @@ footer ul li{
 
 /* contacts buttons */
 footer i:hover{
-  background-color: #98b3c0;
+  background-color: #0076b1;
 }
 
 .accu_weather_logo img{
@@ -97,23 +125,7 @@ footer i:hover{
   min-height: 0 !important;
 }
 
-input[type=text]:not(.browser-default):focus:not([readonly]){
-  border-bottom: rgb(0, 132, 255) !important;
-  box-shadow: 0 1px 0 0 rgb(0, 132, 255) !important;
-}
-
 @media screen and (max-width: 600px){
-
-  /* logo img */
-  nav > span > i{
-    margin-top: 2px;
-  }
-
-  nav > span{
-    font-size: 1.5rem !important;
-    margin-left: -43px !important;
-    margin-top: -10px;
-  }
 
   nav .switch{
     margin-top: -16px;
@@ -126,4 +138,23 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
   nav .switch span{
     margin: 2px !important;
   }
+
+  /* LOGO */
+  .search .cloud-logo{
+    margin: auto auto 10px;
+    width: 200px;
+  }
+  .search .cloud-logo h3{
+    font-size: 2em;
+  }
+
+  .accu_weather_logo{
+    margin: 0;
+  }
+
+  .lds-dual-ring:after{
+    width: 40px;
+    height: 40px;
+  }
+
 }

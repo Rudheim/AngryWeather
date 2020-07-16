@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { CityContext } from '../contexts/CityContext';
+import { WeatherContext } from '../contexts/WeatherContext';
 import { ThemeContext } from '../contexts/ThemeContext';
+
 
 const CityInfo = () => {
 
-  const {cityDet} = useContext(CityContext)
+  const {cityDet} = useContext(WeatherContext)
   const {darkTheme} = useContext(ThemeContext);
 
   const theme = darkTheme.isDarkTheme ? darkTheme.light : darkTheme.dark

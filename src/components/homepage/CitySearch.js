@@ -1,22 +1,50 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { CityContext } from '../contexts/CityContext'
 import { WeatherContext } from '../contexts/WeatherContext'
-import { FiveDayForecastContext } from '../contexts/FiveDayForecastContext'
-import { TwelveHourForecastContext } from '../contexts/TwelveHourForecasstContext'
+import { motion } from 'framer-motion'
+import { useHistory } from 'react-router-dom';
+
+const searchBar ={
+  hidden:{
+    x: '-100vw'
+  },
+  visible:{
+    x: 0,
+    transition: {
+      delay: 1
+    }
+  },
+  exit:{
+    x: '-100vw',
+    transition: { duration: 1, ease: 'easeInOut'}
+  }
+}
+
+const zoomVaraints ={
+  animate:{
+    scale: 1.5,
+    transition: {
+      duration: 1,
+      yoyo: Infinity
+    }
+  }
+}
 
 const CitySearch = () => {
 
+  const location = useHistory();
+
   const [city, setCity] = useState('');
   const [err_msg, setErr] = useState('');
-  const {SetCityDet} = useContext(CityContext)
-  const {SetWeather} = useContext(WeatherContext)
-  const {SetFiveDayForecast} = useContext(FiveDayForecastContext)
-  const {SetTwelveHourForecast} = useContext(TwelveHourForecastContext)
+  const {SetCityDet, SetWeather, SetFiveDayForecast, SetTwelveHourForecast} = useContext(WeatherContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const key = 'ftRUJysO43J8dJDzfA6GZUuaCeKulw8U';
+
+    const loading_circle = document.querySelector('.lds-dual-ring');
+    loading_circle.style.display = 'inline-block';
+
+    const key = 'feqADZEa1w67AGPmBG73AlJqlIzjFXEy';
     const query = `?apikey=${key}&q=${city}`;
     axios
       .get('http://dataservice.accuweather.com/locations/v1/cities/search' + query)
@@ -56,21 +84,37 @@ const CitySearch = () => {
           .then(res => {
             SetFiveDayForecast(res.data.DailyForecasts)
           })
+          .then(() => {
+            loading_circle.style.display = 'none';
+            location.location.pathname === "/" ? location.push("/weather") : console.log(city + ' found')
+          })
       }).catch((err) => {
+        loading_circle.style.display = 'none'
         setErr('Cannot find given city name')
       })
-    e.target.reset();
+    setCity('');
   }
 
   return ( 
-      <form onSubmit={handleSubmit}>
-        <div className="input-field">
-        <i className="material-icons prefix blue-text">search</i>
+      <motion.form className="container" onSubmit={handleSubmit}
+        variants={searchBar}
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+      >
+        <div className="input-field container">
+        <motion.i className="material-icons prefix blue-text"
+          variants={zoomVaraints}
+          animate='animate'
+        >
+        search
+        </motion.i>
           <label htmlFor="city_search">Enter the city</label>
           <input className="validate" type="text" name="city_search" onChange={e => setCity(e.target.value.trim())}/>
           <p className="center red-text text-darken-2">{err_msg}</p>
+          <div className="center"><div className="lds-dual-ring"></div></div>
         </div>
-      </form>
+      </motion.form>
    );
 }
  

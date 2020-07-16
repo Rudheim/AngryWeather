@@ -4,45 +4,83 @@ import CityInfo from '../dashboard/CityInfo';
 import FiveDaysForecast from '../dashboard/FiveDaysForecast';
 import TwelveHourForecast from '../dashboard/TwelveHourForecast';
 import GeoInfo from '../dashboard/GeoInfo';
-import CitySearch from '../dashboard/CitySearch';
-import { ThemeContext } from '../contexts/ThemeContext';
-import { CityContext } from '../contexts/CityContext';
+import CitySearch from '../homepage/CitySearch';
+import { WeatherContext } from '../contexts/WeatherContext';
+import { motion } from 'framer-motion'
+import { Redirect } from 'react-router-dom';
 
 const Dashboard = () => {
 
-  const {cityDet} = useContext(CityContext)
-  const {darkTheme} = useContext(ThemeContext);
+  const cardsVariants = {
+    hidden_left:{
+      x: '-100vw'
+    },
+    hidden_right:{
+      x: '100vw'
+    },
+    hidden_top:{
+      y: '-100vw'
+    },
+    hidden_bottom:{
+      y: '100vw'
+    },
+    visible:{
+      x: 0,
+      y: 0,
+      transition:{
+        duration: 1
+      }
+    }
+  }
 
-  const theme = darkTheme.isDarkTheme ? darkTheme.light : darkTheme.dark
+  const {cityDet} = useContext(WeatherContext)
 
-  return ( 
+  return (
     Object.keys(cityDet).length > 0 ? (
-      <div className={`container ${theme.bg}`}>
+      <div className="container">
         <div className="row">
           <div className="col s12 m6">
             <CitySearch />
-            <MainScreen />
-            <FiveDaysForecast />              
+            <motion.div 
+              variants={cardsVariants}
+              initial='hidden_left'
+              animate='visible'
+            ><MainScreen />
+            </motion.div>
+            <motion.div 
+              variants={cardsVariants}
+              initial='hidden_bottom'
+              animate='visible'
+            ><FiveDaysForecast />
+            </motion.div>                        
           </div>
           <div className="col s12 m6">
-            <TwelveHourForecast />
-            <div className="row">
+          <motion.div 
+              variants={cardsVariants}
+              initial='hidden_top'
+              animate='visible'
+            ><TwelveHourForecast />
+            </motion.div>
+            <motion.div className="row"
+              variants={cardsVariants}
+              initial='hidden_right'
+              animate='visible'>
               <div className="col s12 m6">
                 <CityInfo />
               </div>
               <div className="col s12 m6">
                 <GeoInfo />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
       ) : (
-      <div className='container transparent'>
-            <CitySearch />
+      <div className='transparent search'>
+          <Redirect to="/" />
       </div>
-      )
-   );
+    )
+  );
 }
  
 export default Dashboard;

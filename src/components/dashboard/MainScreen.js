@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import { CityContext } from '../contexts/CityContext';
 import { WeatherContext } from '../contexts/WeatherContext';
 
 const MainScreen = () => {
 
-  const {cityDet} = useContext(CityContext)
-  const {weather} = useContext(WeatherContext)
+  const {cityDet, weather} = useContext(WeatherContext)
 
   const background = weather.dayTime ? (
     'light-blue'

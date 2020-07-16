@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { TwelveHourForecastContext } from '../contexts/TwelveHourForecasstContext';
+import { WeatherContext } from '../contexts/WeatherContext'
 import { ThemeContext } from '../contexts/ThemeContext';
 
 const TwelveHourForecast = () => {
 
-  const {TwelveHourForecast} = useContext(TwelveHourForecastContext)
+  const {TwelveHourForecast} = useContext(WeatherContext);
   const {darkTheme} = useContext(ThemeContext);
 
   const theme = darkTheme.isDarkTheme ? darkTheme.light : darkTheme.dark

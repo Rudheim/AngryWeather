@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { FiveDayForecastContext } from '../contexts/FiveDayForecastContext';
+import { WeatherContext } from '../contexts/WeatherContext'
 
 
 const FiveDaysForecast = () => {
 
-  const {fiveDayForecast} = useContext(FiveDayForecastContext)
+  const {fiveDayForecast} = useContext(WeatherContext)
 
   const forecastDailyList = fiveDayForecast.length ? (
     fiveDayForecast.map(daily => {

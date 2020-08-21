@@ -1,3 +1,18 @@
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: url(./assets/overlay.png) repeat;
+}
+main {
+  display: flex !important;
+  flex: 1 0 auto;
+  margin-top: 50px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  justify-content: center;
+}
+
 /* NAVBAR */
 .nav-wrapper{
   height: 40px !important;
@@ -15,12 +30,18 @@ nav .switch{
 }
 .switch .lever{
   margin-top: -18px !important;
+  background-color: grey !important;
 }
 .switch label input[type=checkbox]:checked+.lever{
   background-color: rgba(212, 212, 212, 0.205) !important;
 }
 .switch label input[type=checkbox]:checked+.lever:after{
   background-color: rgb(141, 141, 141) !important;
+}
+
+.search-bar{
+  display: flex;
+  justify-content: center;
 }
 
 /* LOGO */
@@ -39,6 +60,7 @@ form{
 form .input-field{
   max-width: 300px;
 }
+
 input[type=text]:not(.browser-default):focus:not([readonly]){
   border-bottom: rgb(0, 132, 255) !important;
   box-shadow: 0 1px 0 0 rgb(0, 132, 255) !important;
@@ -68,7 +90,6 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
     transform: rotate(360deg);
   }
 }
-
 /* CARDS */
 .card h1{
   margin-top: 10px !important;
@@ -92,10 +113,11 @@ tr span{
 }
 
 /* _________FOOTER________ */
-.page-footer{
-  bottom: 0;
+footer{
+  z-index: 2;
   left: 0;
-  right:0;
+  bottom: 0;
+  width: 100%;
 }
 
 .row{
@@ -126,6 +148,10 @@ footer i:hover{
 }
 
 @media screen and (max-width: 600px){
+
+  .container{
+    width: 100% !important;
+  }
 
   nav .switch{
     margin-top: -16px;

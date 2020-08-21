@@ -20,14 +20,16 @@ const cardsVariants = {
 
 const Dashboard = () => {
 
-  const {cityDet} = useContext(WeatherContext)
+  const {cityDet} = useContext(WeatherContext);
 
   return (
     Object.keys(cityDet).length > 0 ? (
       <div className="container">
         <div className="row">
           <div className="col s12 m6">
-            <CitySearch />
+            <div className="search-bar">
+              <CitySearch />
+            </div>
             <motion.div variants={cardsVariants} initial='hidden_left' animate='visible' >
               <MainScreen />
             </motion.div>

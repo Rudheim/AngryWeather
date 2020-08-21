@@ -10,7 +10,7 @@ const ThemeProvider = (props) => {
       nav_bg: 'grey lighten-2',
       nav_text: 'grey-text text-darken-4'  ,
       bg: 'grey lighten-5',
-      body: '#eeeeee',
+      body: '#ffffff',
       card: 'blue-grey lighten-4',
       card_text: 'grey-text text-darken-4',
       copy_footer: 'grey darken-2'

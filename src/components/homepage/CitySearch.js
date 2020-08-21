@@ -80,8 +80,8 @@ const CitySearch = () => {
   }
 
   return ( 
-    <motion.form className="container" onSubmit={handleSubmit} variants={searchBar} initial='hidden' animate='visible' exit='exit' >
-      <div className="input-field container">
+    <motion.form onSubmit={handleSubmit} variants={searchBar} initial='hidden' animate='visible' exit='exit' >
+      <div className="input-field">
         <motion.i className="material-icons prefix blue-text" variants={zoomVaraints} animate='animate' >search</motion.i>
         <label htmlFor="city_search">Enter the city</label>
         <input className="validate" type="text" name="city_search" onChange={e => setCity(e.target.value.trim())}/>

@@ -19,12 +19,14 @@ const App = () => {
     <ThemeProvider>
       <WeatherProvider>
         <Navbar/>
-        <AnimatePresence exitBeforeEnter>
-          <Switch location={location} key={location.key}>
-            <Route exact path='/' component={Homepage} />
-            <Route path='/weather' component={Dashboard} />
-          </Switch>
-        </AnimatePresence>
+        <main>
+          <AnimatePresence exitBeforeEnter>
+            <Switch location={location} key={location.key}>
+              <Route exact path='/' component={Homepage} />
+              <Route path='/weather' component={Dashboard} />
+            </Switch>
+          </AnimatePresence>
+        </main>
         <Footer/>
       </WeatherProvider>
     </ThemeProvider>

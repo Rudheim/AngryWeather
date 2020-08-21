@@ -4,21 +4,14 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router-dom';
 
-const Footer = () => {
 
-  const logoVariants = {
-    hidden:{
-      opacity: 0
-    },
-    visible:{
-      opacity: 1,
-      transition: { duration: 2}
-    },
-    exit:{
-      y: '100vw',
-      transition: { duration: 1, ease: 'easeInOut'}
-    }
-  }
+const logoVariants = {
+  hidden:{ opacity: 0 },
+  visible:{ opacity: 1, transition: { duration: 2} },
+  exit:{ y: '100vw', transition: { duration: 1, ease: 'easeInOut'} }
+}
+
+const Footer = () => {
 
   const {darkTheme} = useContext(ThemeContext);
   const location = useLocation();

@@ -5,7 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Dashboard from './components/layout/Dashboard';
 import M from "materialize-css";
 import Homepage from './components/layout/Homepage';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch, useLocation} from 'react-router-dom';
 import Footer from './components/layout/Footer'
 import { AnimatePresence } from 'framer-motion'
 
@@ -17,17 +17,16 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <Navbar />
       <WeatherProvider>
+        <Navbar/>
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route exact path='/' component={Homepage} />
             <Route path='/weather' component={Dashboard} />
           </Switch>
-          <Footer />
         </AnimatePresence>
+        <Footer/>
       </WeatherProvider>
-      
     </ThemeProvider>
   );
 }

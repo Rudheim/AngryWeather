@@ -4,30 +4,14 @@ import { WeatherContext } from '../contexts/WeatherContext'
 import { motion } from 'framer-motion'
 import { useHistory } from 'react-router-dom';
 
-const searchBar ={
-  hidden:{
-    x: '-100vw'
-  },
-  visible:{
-    x: 0,
-    transition: {
-      delay: 1
-    }
-  },
-  exit:{
-    x: '-100vw',
-    transition: { duration: 1, ease: 'easeInOut'}
-  }
+const searchBar = {
+  hidden: { x: '-100vw' },
+  visible: { x: 0, transition: { delay: 1 } },
+  exit:{ x: '-100vw', transition: { duration: 1, ease: 'easeInOut'} }
 }
 
-const zoomVaraints ={
-  animate:{
-    scale: 1.5,
-    transition: {
-      duration: 1,
-      yoyo: Infinity
-    }
-  }
+const zoomVaraints = {
+  animate:{ scale: 1.5, transition: { duration: 1, yoyo: Infinity } }
 }
 
 const CitySearch = () => {
@@ -96,26 +80,16 @@ const CitySearch = () => {
   }
 
   return ( 
-      <motion.form className="container" onSubmit={handleSubmit}
-        variants={searchBar}
-        initial='hidden'
-        animate='visible'
-        exit='exit'
-      >
-        <div className="input-field container">
-        <motion.i className="material-icons prefix blue-text"
-          variants={zoomVaraints}
-          animate='animate'
-        >
-        search
-        </motion.i>
-          <label htmlFor="city_search">Enter the city</label>
-          <input className="validate" type="text" name="city_search" onChange={e => setCity(e.target.value.trim())}/>
-          <p className="center red-text text-darken-2">{err_msg}</p>
-          <div className="center"><div className="lds-dual-ring"></div></div>
-        </div>
-      </motion.form>
-   );
+    <motion.form className="container" onSubmit={handleSubmit} variants={searchBar} initial='hidden' animate='visible' exit='exit' >
+      <div className="input-field container">
+        <motion.i className="material-icons prefix blue-text" variants={zoomVaraints} animate='animate' >search</motion.i>
+        <label htmlFor="city_search">Enter the city</label>
+        <input className="validate" type="text" name="city_search" onChange={e => setCity(e.target.value.trim())}/>
+        <p className="center red-text text-darken-2">{err_msg}</p>
+        <div className="center"><div className="lds-dual-ring"></div></div>
+      </div>
+    </motion.form>
+  );
 }
  
 export default CitySearch;

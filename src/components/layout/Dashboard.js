@@ -9,29 +9,16 @@ import { WeatherContext } from '../contexts/WeatherContext';
 import { motion } from 'framer-motion'
 import { Redirect } from 'react-router-dom';
 
-const Dashboard = () => {
 
-  const cardsVariants = {
-    hidden_left:{
-      x: '-100vw'
-    },
-    hidden_right:{
-      x: '100vw'
-    },
-    hidden_top:{
-      y: '-100vw'
-    },
-    hidden_bottom:{
-      y: '100vw'
-    },
-    visible:{
-      x: 0,
-      y: 0,
-      transition:{
-        duration: 1
-      }
-    }
-  }
+const cardsVariants = {
+  hidden_left: { x: '-100vw' },
+  hidden_right: { x: '100vw' },
+  hidden_top: { y: '-100vw' },
+  hidden_bottom: { y: '100vw' },
+  visible: { x: 0, y: 0, transition: { duration: 1 } }
+}
+
+const Dashboard = () => {
 
   const {cityDet} = useContext(WeatherContext)
 
@@ -41,30 +28,18 @@ const Dashboard = () => {
         <div className="row">
           <div className="col s12 m6">
             <CitySearch />
-            <motion.div 
-              variants={cardsVariants}
-              initial='hidden_left'
-              animate='visible'
-            ><MainScreen />
+            <motion.div variants={cardsVariants} initial='hidden_left' animate='visible' >
+              <MainScreen />
             </motion.div>
-            <motion.div 
-              variants={cardsVariants}
-              initial='hidden_bottom'
-              animate='visible'
-            ><FiveDaysForecast />
+            <motion.div variants={cardsVariants} initial='hidden_bottom' animate='visible' >
+              <FiveDaysForecast />
             </motion.div>                        
           </div>
           <div className="col s12 m6">
-          <motion.div 
-              variants={cardsVariants}
-              initial='hidden_top'
-              animate='visible'
-            ><TwelveHourForecast />
+            <motion.div variants={cardsVariants} initial='hidden_top' animate='visible' >
+              <TwelveHourForecast />
             </motion.div>
-            <motion.div className="row"
-              variants={cardsVariants}
-              initial='hidden_right'
-              animate='visible'>
+            <motion.div className="row" variants={cardsVariants} initial='hidden_right' animate='visible'>
               <div className="col s12 m6">
                 <CityInfo />
               </div>

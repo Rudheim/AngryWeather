@@ -7,7 +7,7 @@ const WeatherProvider = (props) => {
   const [cityDet, SetCityDet] = useState({});
   const [fiveDayForecast, SetFiveDayForecast] = useState([]);
   const [TwelveHourForecast, SetTwelveHourForecast] = useState ([]);
-  const [weather, SetWeather] = useState({})
+  const [weather, SetWeather] = useState({});
 
   return ( 
     <WeatherContext.Provider value={{cityDet, SetCityDet, fiveDayForecast, SetFiveDayForecast, TwelveHourForecast, SetTwelveHourForecast, weather, SetWeather}}>

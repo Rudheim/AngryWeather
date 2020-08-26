@@ -28,10 +28,10 @@ const CitySearch = () => {
     const loading_circle = document.querySelector('.lds-dual-ring');
     loading_circle.style.display = 'inline-block';
 
-    const key = 'feqADZEa1w67AGPmBG73AlJqlIzjFXEy';
+    const key = 'YvtufP14SPxpY1nvJozX0PU1qmTRDQ1A';
     const query = `?apikey=${key}&q=${city}`;
     axios
-      .get('http://dataservice.accuweather.com/locations/v1/cities/search' + query)
+      .get('https://dataservice.accuweather.com/locations/v1/cities/search' + query)
       .then(res => {
         setErr('');
         SetCityDet(
@@ -46,7 +46,7 @@ const CitySearch = () => {
             timezone: res.data[0].TimeZone.Code
           })
         axios
-          .get('http://dataservice.accuweather.com/currentconditions/v1/' + res.data[0].Key + `?apikey=${key}`)
+          .get('https://dataservice.accuweather.com/currentconditions/v1/' + res.data[0].Key + `?apikey=${key}`)
           .then(res => {
             SetWeather({
               precipitation: res.data[0].HasPrecipitation,
@@ -59,18 +59,18 @@ const CitySearch = () => {
             })
           })
         axios
-          .get('http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/' + res.data[0].Key + `?apikey=${key}`)
+          .get('https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/' + res.data[0].Key + `?apikey=${key}`)
           .then(res => {
             SetTwelveHourForecast(res.data)
           })
         axios
-          .get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + res.data[0].Key + `?apikey=${key}`)
+          .get('https://dataservice.accuweather.com/forecasts/v1/daily/5day/' + res.data[0].Key + `?apikey=${key}`)
           .then(res => {
             SetFiveDayForecast(res.data.DailyForecasts)
           })
           .then(() => {
             loading_circle.style.display = 'none';
-            location.location.pathname === "/" ? location.push("/weather") : console.log(city + ' found')
+            location.push("/weather")
           })
       }).catch((err) => {
         loading_circle.style.display = 'none'

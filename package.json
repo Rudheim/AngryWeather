@@ -1,5 +1,6 @@
 {
   "name": "angry-weather",
+  "homepage": "http://weather.netheim.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

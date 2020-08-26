@@ -13,12 +13,15 @@ const MainScreen = () => {
 
   return ( 
     Object.keys(cityDet).length > 0 && Object.keys(weather).length > 0 ? (
-      <div className={`card ${background} darken-1`}>
+      <div className={`card ${background} darken-1 main-card`}>
         <div className="card-content white-text center">
+        <div className="sun-img">
           <img src={`/img/icons/${weather.weatherIcon}.png`} alt="{weather.weatherText}"/>
-          <h1>{cityDet.cityName}</h1>
-          <h5>{cityDet.country}</h5>
-          <h1>{weather.temperature} &deg;{weather.unit}</h1>
+          </div>
+
+          <h3>{cityDet.cityName}</h3>
+          <h4>{cityDet.country}</h4>
+          <h2>{weather.temperature} &deg;{weather.unit}</h2>
         </div>
       </div>      
     ) : (

@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return ( 
       <nav className={`nav-wrapper transparent`}>
-          <div className="switch right">
+          <div className="switch center">
             <label>
             <input type="checkbox" onChange={toggleTheme}/>
             <span className="lever"></span>
